@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tic Tac Toe</title>
+
+	<script src="https://kit.fontawesome.com/ad8b63a33f.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/principales.css">
+	<link rel="stylesheet" href="css/home.css">
+	<link rel="stylesheet" href="css/game.css">
+	<link rel="stylesheet" href="css/modal.css">
+	<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+<body>
+	
+
+	<div class="container">
+		
+		<!-- Home -->
+		<section class="section section-home">
+			<h1 class="title">Tic Tac Toe</h1>
+			<span class="btn">Jugar</span>
+		</section>
+
+		<!-- Game -->
+		<section class="section section-game">
+			<nav class="game__nav">
+				<span class="game__nav-player rayaBaja">
+					<span class="game__nav-player-icon">X</span>
+					<span class="game__nav-player-point">-</span>
+				</span>
+				<i class="fas fa-redo btn-reset"></i>
+				<span class="game__nav-player game__nav-player-2">
+					<span class="game__nav-player-icon">O</span>
+					<span class="game__nav-player-point">-</span>
+				</span>
+			</nav>
+
+			<!-- Tablero -->
+			<div class="cont-tablero">
+				<div class="tablero">
+					<div class="tablero__casilla"></div>
+					<div class="tablero__casilla"></div>
+					<div class="tablero__casilla"></div>
+					<div class="tablero__casilla"></div>
+					<div class="tablero__casilla"></div>
+					<div class="tablero__casilla"></div>
+					<div class="tablero__casilla"></div>
+					<div class="tablero__casilla"></div>
+					<div class="tablero__casilla"></div>
+				</div>
+			</div>
+
+
+			<!-- modal -->
+			<div class="modal section none">
+				<div class="modal-box">
+					<span class="modal-text">Ganador</span>
+					<b class="modal-ganador">X</b>
+				</div>
+			</div>
+
+		</section>
+
+	</div>
+
+
+
+	<script src="js/jugar.js"></script>
+	<script src="js/tablero.js"></script>
+	<script src="js/verificarLineas.js"></script>
+	<script src="js/mostrarModal.js"></script>
+	<script src="js/resetear.js"></script>
+	<script src="js/aumentarMarcador.js"></script>
+
+
+</body>
+</html>

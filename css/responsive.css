@@ -1,0 +1,22 @@
+@media screen and (max-width: 500px) {
+
+	.container {
+		margin: 0;
+		height: 100vh;
+	}
+
+	.btn {
+		margin-top: 150px;
+		transform: scale(1.2);
+	}
+
+	.btn-reset {
+		position: absolute;
+		top: 60px;
+		right: 0;
+	}
+
+	.game__nav {
+		justify-content: space-around;
+	}
+}

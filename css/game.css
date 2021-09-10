@@ -1,0 +1,94 @@
+.section-game {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	background: #2881FB99;
+}
+
+.game__nav {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 5px;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+}
+
+.game__nav-player {
+	position: relative;
+	flex-basis: 100px;
+	font-size: 20px;
+	display: flex;
+	padding: 2px 10px;
+}
+
+.game__nav-player::before {
+	content: "";
+	display: inline-block;
+	width: 0;
+	height: 2px;
+	background: #3B84FC;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	transition: width .3s;
+}
+
+.rayaBaja::before {
+	width: 100%;
+}
+
+
+.game__nav-player-2 {
+	transform: scaleX(-1);
+}
+
+.game__nav-player-icon {
+	flex-grow: 1;
+}
+
+
+.game__nav-player-point:last-child {
+	transform: scaleX(-1);
+}
+
+.btn-reset {
+	padding: 8px;
+	margin: 0 30px;
+	background: #2881FB;
+	color: #fff;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: transform .3s;
+}
+
+.cont-tablero {
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.tablero {
+	width: 270px;
+	height: 270px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-gap: 5px;
+	background: #fff;
+}
+
+.tablero__casilla {
+	background: #2881FB99;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 50px;
+	overflow: hidden;
+}
+
+.x {color: #BD37D1;}
+.o {color: #4A4DDE;}
