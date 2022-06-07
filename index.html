@@ -1,82 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tic Tac Toe</title>
+	<script src="https://kit.fontawesome.com/21cece7f89.js" crossorigin="anonymous"></script>
 
-	<script src="https://kit.fontawesome.com/ad8b63a33f.js" crossorigin="anonymous"></script>
-
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/principales.css">
-	<link rel="stylesheet" href="css/home.css">
-	<link rel="stylesheet" href="css/game.css">
-	<link rel="stylesheet" href="css/modal.css">
-	<link rel="stylesheet" href="css/responsive.css">
-
+	<link rel="stylesheet" href="code/style/normalize.css">
+	<link rel="stylesheet" href="code/style/main.css">
+	<link rel="stylesheet" href="code/style/home_section.css">
+	<link rel="stylesheet" href="code/style/game_section.css">
+	<link rel="stylesheet" href="code/style/responsive.css">
 </head>
 <body>
 	
-
-	<div class="container">
+	<div class="game-container">
 		
-		<!-- Home -->
-		<section class="section section-home">
-			<h1 class="title">Tic Tac Toe</h1>
-			<span class="btn">Jugar</span>
+		<!-- Home section -->
+		<section class="home-section" id="home-section">
+			<h1 class="home-section__title">Tic Tac Toe</h1>
+			<button class="home-section__button" id="home-section-btn">
+				<i class="fa-solid fa-play home-section__button-icon"></i>
+			</button>
 		</section>
 
-		<!-- Game -->
-		<section class="section section-game">
-			<nav class="game__nav">
-				<span class="game__nav-player rayaBaja">
-					<span class="game__nav-player-icon">X</span>
-					<span class="game__nav-player-point">-</span>
-				</span>
-				<i class="fas fa-redo btn-reset"></i>
-				<span class="game__nav-player game__nav-player-2">
-					<span class="game__nav-player-icon">O</span>
-					<span class="game__nav-player-point">-</span>
-				</span>
-			</nav>
+		<!-- Game section -->
+		<section class="game-section">
+			<header class="game-hero">
+				<div class="game-hero__scoreBox low_bar">
+					<i class="fa-solid fa-xmark game-hero__scoreBox-icon"></i>
+					<span class="game-hero__scoreBox-score">0</span>
+				</div>
+				<i class="fa-solid fa-arrows-rotate game-hero__btnRestart" id="game-hero__btnRestart"></i>
+				<div class="game-hero__scoreBox">
+					<span class="game-hero__scoreBox-score">0</span>
+					<i class="fa-solid fa-genderless game-hero__scoreBox-icon"></i>
+				</div>
+			</header>
 
 			<!-- Tablero -->
-			<div class="cont-tablero">
-				<div class="tablero">
-					<div class="tablero__casilla"></div>
-					<div class="tablero__casilla"></div>
-					<div class="tablero__casilla"></div>
-					<div class="tablero__casilla"></div>
-					<div class="tablero__casilla"></div>
-					<div class="tablero__casilla"></div>
-					<div class="tablero__casilla"></div>
-					<div class="tablero__casilla"></div>
-					<div class="tablero__casilla"></div>
+			<main class="board-container">
+				<div class="board" id="board">
+					<div class="board__box"></div>
+					<div class="board__box"></div>
+					<div class="board__box"></div>
+					<div class="board__box"></div>
+					<div class="board__box"></div>
+					<div class="board__box"></div>
+					<div class="board__box"></div>
+					<div class="board__box"></div>
+					<div class="board__box"></div>
+					<!-- <i class="fa-solid fa-genderless"></i> -->
+					<!-- <i class="fa-solid fa-xmark"></i> -->
 				</div>
-			</div>
-
-
-			<!-- modal -->
-			<div class="modal section none">
-				<div class="modal-box">
-					<span class="modal-text">Ganador</span>
-					<b class="modal-ganador">X</b>
-				</div>
-			</div>
-
+			</main>
 		</section>
 
 	</div>
 
-
-
-	<script src="js/jugar.js"></script>
-	<script src="js/tablero.js"></script>
-	<script src="js/verificarLineas.js"></script>
-	<script src="js/mostrarModal.js"></script>
-	<script src="js/resetear.js"></script>
-	<script src="js/aumentarMarcador.js"></script>
-
-
+	<script src="code/scripts/start.js"></script>
+	<script src="code/scripts/board.js"></script>
 </body>
 </html>

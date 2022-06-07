@@ -1,0 +1,16 @@
+@media screen and ( max-width: 600px ) {
+
+	.game-container {
+		margin: 0;
+		width: 100vw;
+		height: 100vh;
+	}
+
+	.board-container {
+		height: 100vh;
+	}
+
+	.board {
+		margin-top: 100px;
+	}
+}

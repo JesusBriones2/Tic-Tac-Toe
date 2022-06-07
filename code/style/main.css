@@ -1,0 +1,10 @@
+* { -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+.game-container {
+	width: 90%;
+	max-width: 700px;
+	margin: 30px auto;
+	position: relative;
+	user-select: none;
+	overflow: hidden;
+}
