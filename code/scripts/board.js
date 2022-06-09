@@ -92,7 +92,9 @@ function check_win () {
 
 
 // reinicia el juego.
-function restart () {
+function restart (e) {
+
+	animation_button_restart(e);
 
 	boxes = [0,0,0,0,0,0,0,0,0];
 	for ( let ob of board.children ) { 
@@ -100,7 +102,7 @@ function restart () {
 		ob.classList.remove("box_full","box_win");
 	}
 
-	if ( game_over == false  ) {
+	if ( game_over == false  || e ) {
 		score = [0,0];
 		score_element[0].textContent = score[0];
 		score_element[1].textContent = score[1];
@@ -108,4 +110,12 @@ function restart () {
 	}
 
 	game_over = false;
+}
+
+
+function animation_button_restart (e) {
+	if (e) {
+		e.target.style.animation = "rotate .3s forwards";
+		setTimeout( () => { e.target.style.animation = "none"; }, 300 );
+	}
 }

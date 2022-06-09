@@ -122,3 +122,8 @@
 	75% { background: #242B48; }
 	100% { background: #FC6060; }
 }
+
+@keyframes rotate {
+	100% { transform: rotate(180deg); }
+}
+
