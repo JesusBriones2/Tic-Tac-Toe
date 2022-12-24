@@ -1,6 +1,6 @@
 # Tic Tac Toe
 Juego de tres en raya con HTML, CSS, JAVASCRIPT.
 
-* link: https://jesusbriones2.github.io/Tic_Tac_Toe/
+* https://jesusbriones2.github.io/Tic-Tac-Toe/
 
-![Page capture](page_capture.png "Page capture")
+![Screenshot of the page.](screenshot.png "Screenshot of the page.")
