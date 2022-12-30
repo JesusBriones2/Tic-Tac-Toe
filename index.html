@@ -5,60 +5,58 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tic Tac Toe</title>
 	<script src="https://kit.fontawesome.com/21cece7f89.js" crossorigin="anonymous"></script>
-
-	<link rel="stylesheet" href="code/style/normalize.css">
-	<link rel="stylesheet" href="code/style/main.css">
-	<link rel="stylesheet" href="code/style/home_section.css">
-	<link rel="stylesheet" href="code/style/game_section.css">
-	<link rel="stylesheet" href="code/style/responsive.css">
+	<link rel="stylesheet" href="./src/main.css">
 </head>
 <body>
 	
 	<div class="game-container">
-		
-		<!-- Home section -->
-		<section class="home-section" id="home-section">
-			<h1 class="home-section__title">Tic Tac Toe</h1>
-			<button class="home-section__button" id="home-section-btn">
-				<i class="fa-solid fa-play home-section__button-icon"></i>
-			</button>
+
+		<!-- Menu principal. -->
+		<section class="menu">
+			<button class="menu__cta btn1"><i class="fa-solid fa-robot"></i>Player vs computer</button>
+			<button class="menu__cta btn2"><i class="fa-solid fa-user-group"></i>Two players</button>
 		</section>
 
-		<!-- Game section -->
-		<section class="game-section">
-			<header class="game-hero">
-				<div class="game-hero__scoreBox low_bar">
-					<i class="fa-solid fa-xmark game-hero__scoreBox-icon"></i>
-					<span class="game-hero__scoreBox-score">0</span>
+		<!-- Titulo o nombre del juego. -->
+		<div class="title">
+			<i class="fa-solid fa-caret-left title__cta btn3"></i>
+			<span class="title__text">Tic Tac Toe</span>
+		</div>
+		
+
+
+
+
+
+
+
+		<div class="game">
+			<!-- Marcador de puntuación -->
+			<div class="game__marker">
+				<div class="game__score turn">
+					<i class="fa-solid fa-xmark l"></i> 0
 				</div>
-				<i class="fa-solid fa-arrows-rotate game-hero__btnRestart" id="game-hero__btnRestart"></i>
-				<div class="game-hero__scoreBox">
-					<span class="game-hero__scoreBox-score">0</span>
-					<i class="fa-solid fa-genderless game-hero__scoreBox-icon"></i>
+				<i class="fa-solid fa-arrows-rotate game__btnRestart"></i>
+				<div class="game__score">
+					0 <i class="fa-solid fa-genderless r"></i>
 				</div>
-			</header>
+			</div>
 
 			<!-- Tablero -->
-			<main class="board-container">
-				<div class="board" id="board">
-					<div class="board__box"></div>
-					<div class="board__box"></div>
-					<div class="board__box"></div>
-					<div class="board__box"></div>
-					<div class="board__box"></div>
-					<div class="board__box"></div>
-					<div class="board__box"></div>
-					<div class="board__box"></div>
-					<div class="board__box"></div>
-					<!-- <i class="fa-solid fa-genderless"></i> -->
-					<!-- <i class="fa-solid fa-xmark"></i> -->
-				</div>
-			</main>
-		</section>
-
+			<div class="board">
+				<div class="board__box"></div>
+				<div class="board__box"></div>
+				<div class="board__box"></div>
+				<div class="board__box"></div>
+				<div class="board__box"></div>
+				<div class="board__box"></div>
+				<div class="board__box"></div>
+				<div class="board__box"></div>
+				<div class="board__box"></div>
+			</div>
+		</div>
 	</div>
 
-	<script src="code/scripts/start.js"></script>
-	<script src="code/scripts/board.js"></script>
+	<script src="./src/script.js"></script>
 </body>
 </html>

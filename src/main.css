@@ -1,0 +1,218 @@
+/* Configura las fuentes desde un archivo. */
+@font-face {
+	font-family: 'Tahun';
+	src: url('./Tahun.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+
+
+
+
+
+/* -----> Estilos principales. */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.game-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+	user-select: none;
+	overflow: hidden;
+    background-color: #181B2E;
+    background-image:  radial-gradient(#363970 2px, transparent 2px), radial-gradient(#363970 2px, #181B2E 2px);
+    background-size: 80px 80px;
+    background-position: 0 0,40px 40px;
+}
+
+
+
+
+
+
+/* -----> Titulo del juego. */
+.title {
+    color: #ccc;
+}
+
+.title__text {
+    display: block;
+    padding-top: 40px;
+    
+    font-size: 2em;
+	font-family: Tahun, sans-serif;
+    text-align: center;
+	letter-spacing: 5px;
+    text-shadow: 4px 4px 0 #000;
+
+    transition: transform .3s, font-size .3s;
+    animation: bright 10s infinite alternate;
+}
+
+/* Brillo en el titulo y el botón de play. */
+@keyframes bright {
+	100% { text-shadow: 4px 4px 0 #000, 0px 0 40px #4154a8, 0 0 40px #4154a8; }
+}
+
+
+
+
+
+
+/* -----> Botón de regreso al menu principal. */
+.title__cta {
+    position: absolute;
+    margin: 30px 50px;
+    font-size: 4em;
+    cursor: pointer;
+    transition: transform .2s, opacity .2s;
+    transform: translateX(-100px);
+    opacity: 0;
+}
+
+
+
+
+
+
+/* -----> Menu principal. */
+.menu {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu__cta {
+    max-width: 95%;
+    width: 250px;
+    padding: 12px 20px;
+    margin-bottom: 25px;
+    background-color: #374151;
+    cursor: pointer;
+    box-shadow: 5px 5px #000;
+    border: none;
+
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 1em;
+    text-align: start;
+    color: #fff;
+    
+    transition-property: color, background, transform, opacity;
+    transition-duration: .2s;
+}
+
+.menu__cta i { margin-right: 20px; }
+
+.menu__cta:hover {
+    color: #000;
+    background-color: #cdaf1d;
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+/* -----> Animaciones al ocultar o mostrar el menu principal. */
+.menu:not(.menu--hide) + .title .title__text {
+    transform: translateY(30px);
+    font-size: 3.5em;
+}
+
+.menu--hide .menu__cta:nth-child(1) {
+    transform: translateX(-300px);
+    opacity: 0;
+}
+
+.menu--hide .menu__cta:nth-child(2) {
+    transform: translateX(300px);
+    opacity: 0;
+}
+
+.menu--hide + .title .title__cta {
+    transform: translate(0);
+    opacity: 1;
+}
+
+
+
+
+
+
+/* -----> Juego -> marcador y tablero. */
+.game {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: none;
+}
+
+/* marcador de puntos. */
+.game__marker {
+
+    padding-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+    font-family: sans-serif;
+    color: #aaa;
+}
+
+.game__score {
+    font-size: 2em;
+	display: flex;
+    align-items: center;
+	position: relative;
+}
+
+.game__score i.l { padding-right: 25px; }
+.game__score i.r { padding-left: 25px; }
+
+
+.game__btnRestart {
+    padding: 0 75px;
+}
+
+
+
+
+
+
+
+
+
+/* -----> Adaptación a dispositivos móviles. */
+@media screen and (max-width: 500px) {
+    .menu:not(.menu--hide) + .title .title__text {
+        transform: translateY(150px);
+        font-size: 2.8em;
+    }
+
+    .title__text { font-size: 1.7em; }
+
+    .title__cta { margin: 17px 30px;}
+    
+    .menu { padding-top: 150px; }
+
+    .menu__cta {
+        width: 70%;
+        padding: 20px 20px;
+        font-size: 1.1em;
+    }
+}
