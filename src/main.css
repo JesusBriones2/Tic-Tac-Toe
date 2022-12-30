@@ -6,6 +6,11 @@
 	font-weight: normal;
 }
 
+:root {
+    --shadow: 5px 5px #0009;
+    --ta: .2s;
+}
+
 
 
 
@@ -20,13 +25,16 @@
 }
 
 .game-container {
+    display: flex;
+    flex-direction: column;
+
     width: 100vw;
     height: 100vh;
-    position: relative;
 	user-select: none;
 	overflow: hidden;
-    background-color: #181B2E;
-    background-image:  radial-gradient(#363970 2px, transparent 2px), radial-gradient(#363970 2px, #181B2E 2px);
+    font-family: tahoma, sans-serif;
+    
+    background-image:  radial-gradient(#2d3285 1px, transparent 1px), radial-gradient(#333788 1px, #181B2E 1px);
     background-size: 80px 80px;
     background-position: 0 0,40px 40px;
 }
@@ -36,85 +44,156 @@
 
 
 
-/* -----> Titulo del juego. */
-.title {
+/* -----> header - marcador, titulo y botones. */
+.header {
+    padding: 20px;
     color: #ccc;
-}
-
-.title__text {
-    display: block;
-    padding-top: 40px;
+    font-size: 20px;
     
-    font-size: 2em;
-	font-family: Tahun, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+/* Marcadores de puntos */
+.player {
+    flex-basis: 200px;
+    padding: 10px 0;
+    background-color: #37415166;
+    box-shadow: var(--shadow);
     text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    transition-property: transform, opacity;
+    transition-duration: var(--ta);
+}
+
+.player__name {
+    font-size: .8em; 
+    letter-spacing: 2px;
+}
+
+.player i {
+    margin-right: 5px; 
+    color: #7d8eff;
+}
+
+.player i.fa-xmark {color: #ff7d7d;}
+
+.player__score {
+    font-size: 1.8em;
+    font-family: monospace;
+}
+
+
+
+/* Titulo. */
+.title {
+    flex-basis: 100%;
+    text-align: center;
+	font-family: Tahun, sans-serif;
 	letter-spacing: 5px;
-    text-shadow: 4px 4px 0 #000;
-
-    transition: transform .3s, font-size .3s;
+    text-shadow: var(--shadow);
+    
     animation: bright 10s infinite alternate;
+    transition-property: transform, font-size;
+    transition-duration: var(--ta);
+}
+@keyframes bright {100% {text-shadow: 3px 3px 0 #000, 0px 0 40px #4154a8}}
+
+
+
+/* Botones del header*/
+.buttons {
+    flex-basis: 350px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+    gap: 15px;
 }
 
-/* Brillo en el titulo y el botón de play. */
-@keyframes bright {
-	100% { text-shadow: 4px 4px 0 #000, 0px 0 40px #4154a8, 0 0 40px #4154a8; }
-}
-
-
-
-
-
-
-/* -----> Botón de regreso al menu principal. */
-.title__cta {
-    position: absolute;
-    margin: 30px 50px;
-    font-size: 4em;
+.buttons i {
+    padding: 10px;
     cursor: pointer;
-    transition: transform .2s, opacity .2s;
-    transform: translateX(-100px);
+    text-shadow: var(--shadow);
+
+    transition-property: transform, opacity;
+    transition-duration: var(--ta);
+}
+
+.buttons i:hover {transform: scale(1.4); color: #cdaf1d;}
+.buttons i:active {color: #ccc;}
+
+
+
+
+
+
+/* -----> Estado de los elementos al ocultar o mostrar el menu principal. */
+.game-container:not(.menu--hide) .player {
+    transform: translateY(-200px);
     opacity: 0;
 }
 
+.game-container:not(.menu--hide) .buttons i {
+    transform: scale(0);
+    opacity: 0;
+}
+
+.game-container:not(.menu--hide) .title {
+    transform: translateY(100px) scale(2);
+}
 
 
+
+
+
+
+/* -----> Sección principal - Menu inicial y tablero */
+.main {
+    flex-grow: 1;
+    position: relative;
+}
 
 
 
 /* -----> Menu principal. */
 .menu {
+    padding-top: 100px;
+
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 30px;
 }
 
 .menu__cta {
-    max-width: 95%;
     width: 250px;
     padding: 12px 20px;
-    margin-bottom: 25px;
     background-color: #374151;
     cursor: pointer;
-    box-shadow: 5px 5px #000;
+    box-shadow: var(--shadow);
     border: none;
 
-    font-family: sans-serif;
     font-weight: 700;
     font-size: 1em;
     text-align: start;
     color: #fff;
-    
+
     transition-property: color, background, transform, opacity;
-    transition-duration: .2s;
+    transition-duration: var(--ta);
 }
 
-.menu__cta i { margin-right: 20px; }
+.menu__cta i {margin-right: 20px;}
 
 .menu__cta:hover {
     color: #000;
@@ -122,75 +201,54 @@
     transform: scale(1.1);
 }
 
-
-
-
-
-
-/* -----> Animaciones al ocultar o mostrar el menu principal. */
-.menu:not(.menu--hide) + .title .title__text {
-    transform: translateY(30px);
-    font-size: 3.5em;
+.game-container:not(.menu--hide) .menu {
+    z-index: 1;
 }
 
-.menu--hide .menu__cta:nth-child(1) {
-    transform: translateX(-300px);
+/* Animación - Botones del menu */
+.menu--hide .menu__cta:nth-child(1) {transform: translateX(-300px); opacity: 0;}
+.menu--hide .menu__cta:nth-child(2) {transform: translateX(300px); opacity: 0;}
+
+
+
+
+
+
+/* -----> Tablero. */
+.game-container:not(.menu--hide) .cont-board {
     opacity: 0;
 }
 
-.menu--hide .menu__cta:nth-child(2) {
-    transform: translateX(300px);
-    opacity: 0;
-}
-
-.menu--hide + .title .title__cta {
-    transform: translate(0);
-    opacity: 1;
-}
-
-
-
-
-
-
-/* -----> Juego -> marcador y tablero. */
-.game {
-    top: 0;
+.cont-board {
+    position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    display: none;
+    display: flex;
+
+    transition-property: opacity;
+    transition-duration: var(--ta);
 }
 
-/* marcador de puntos. */
-.game__marker {
-
-    padding-top: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-    font-family: sans-serif;
-    color: #aaa;
+.board {
+    margin: auto;
+    width: 380px;
+    height: 380px;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
 }
 
-.game__score {
-    font-size: 2em;
-	display: flex;
-    align-items: center;
-	position: relative;
+.board__item {
+    background-color: #37415166;
+    transition-property: background;
+    transition-duration: var(--ta);
 }
 
-.game__score i.l { padding-right: 25px; }
-.game__score i.r { padding-left: 25px; }
-
-
-.game__btnRestart {
-    padding: 0 75px;
+.board__item:hover {
+    background-color: #5f6f8a66;
 }
-
-
-
 
 
 
@@ -198,21 +256,26 @@
 
 
 /* -----> Adaptación a dispositivos móviles. */
+@media screen and (max-width: 700px ) {
+    .player {
+        order: 1;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 10px;
+    }
+    .header {flex-wrap: wrap;gap: 20px;}
+    .player__score {flex-grow: 1;}
+    .title {order: 1;flex-basis: 300px;}
+    .buttons {flex-basis: 100%;align-items: center;flex-wrap: nowrap;}
+    .buttons i:nth-child(3), .buttons i:nth-child(5) { order: 1;}
+}
+
 @media screen and (max-width: 500px) {
-    .menu:not(.menu--hide) + .title .title__text {
-        transform: translateY(150px);
-        font-size: 2.8em;
-    }
-
-    .title__text { font-size: 1.7em; }
-
-    .title__cta { margin: 17px 30px;}
-    
-    .menu { padding-top: 150px; }
-
-    .menu__cta {
-        width: 70%;
-        padding: 20px 20px;
-        font-size: 1.1em;
-    }
+    .menu--hide .title {display: none;}
+    .header {justify-content: space-between;}
+    .buttons {justify-content: space-evenly;}
+    .player {flex-basis: 100%;}
+    .player__name {flex-grow: 1;}
+    .player__score {flex-grow: 0;padding: 0 20px;}
+    .board {width: 340px;height: 340px;}
 }

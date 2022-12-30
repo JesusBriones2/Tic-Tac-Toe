@@ -11,50 +11,49 @@
 	
 	<div class="game-container">
 
-		<!-- Menu principal. -->
-		<section class="menu">
-			<button class="menu__cta btn1"><i class="fa-solid fa-robot"></i>Player vs computer</button>
-			<button class="menu__cta btn2"><i class="fa-solid fa-user-group"></i>Two players</button>
+		<section class="header">
+
+			<div class="player">
+				<span class="player__name"><i class="fa-solid fa-xmark"></i>Player</span>
+				<span class="player__score">0</span>
+			</div>
+
+			<div class="buttons">
+				<h1 class="title">Tic Tac Toe</h1>
+				<i class="fa-solid fa-arrow-rotate-left"></i>
+				<i class="fa-solid fa-arrows-rotate"></i>
+				<i class="fa-solid fa-arrow-right-arrow-left"></i>
+				<i class="fa-solid fa-arrow-right-from-bracket" id="cta-back"></i>
+			</div>
+
+			<div class="player">
+				<span class="player__name"><i class="fa-solid fa-o"></i>Computer</span>
+				<span class="player__score">0</span>
+			</div>
 		</section>
 
-		<!-- Titulo o nombre del juego. -->
-		<div class="title">
-			<i class="fa-solid fa-caret-left title__cta btn3"></i>
-			<span class="title__text">Tic Tac Toe</span>
-		</div>
-		
-
-
-
-
-
-
-
-		<div class="game">
-			<!-- Marcador de puntuación -->
-			<div class="game__marker">
-				<div class="game__score turn">
-					<i class="fa-solid fa-xmark l"></i> 0
-				</div>
-				<i class="fa-solid fa-arrows-rotate game__btnRestart"></i>
-				<div class="game__score">
-					0 <i class="fa-solid fa-genderless r"></i>
-				</div>
-			</div>
+		<section class="main">
+			<!-- Menu principal. -->
+			<section class="menu" id="menu">
+				<button class="menu__cta" id="cta-computer"><i class="fa-solid fa-robot"></i>Player vs computer</button>
+				<button class="menu__cta" id="cta-2players"><i class="fa-solid fa-user-group"></i>Two players</button>
+			</section>
 
 			<!-- Tablero -->
-			<div class="board">
-				<div class="board__box"></div>
-				<div class="board__box"></div>
-				<div class="board__box"></div>
-				<div class="board__box"></div>
-				<div class="board__box"></div>
-				<div class="board__box"></div>
-				<div class="board__box"></div>
-				<div class="board__box"></div>
-				<div class="board__box"></div>
-			</div>
-		</div>
+			<section class="cont-board">
+				<div class="board">
+					<div class="board__item"></div>
+					<div class="board__item"></div>
+					<div class="board__item"></div>
+					<div class="board__item"></div>
+					<div class="board__item"></div>
+					<div class="board__item"></div>
+					<div class="board__item"></div>
+					<div class="board__item"></div>
+					<div class="board__item"></div>
+				</div>
+			</section>
+		</section>
 	</div>
 
 	<script src="./src/script.js"></script>
