@@ -10,52 +10,66 @@
 <body>
 	
 	<div class="game-container">
-
 		<section class="header">
-
 			<div class="player">
-				<span class="player__name"><i class="fa-solid fa-xmark"></i>Player</span>
+				<span class="player__name">
+					<!-- <i class="fa-solid fa-xmark"></i> -->
+					<!-- <span>Player</span> -->
+					<!-- <i class="fa-solid fa-user icon"></i> -->
+				</span>
 				<span class="player__score">0</span>
 			</div>
 
-			<div class="buttons">
+			<div class="title_and_buttons">
 				<h1 class="title">Tic Tac Toe</h1>
-				<i class="fa-solid fa-arrow-rotate-left"></i>
-				<i class="fa-solid fa-arrows-rotate"></i>
-				<i class="fa-solid fa-arrow-right-arrow-left"></i>
-				<i class="fa-solid fa-arrow-right-from-bracket" id="cta-back"></i>
+				<div class="buttons" id="buttons">
+					<i class="fa-solid fa-arrows-rotate restart"></i>
+					<i class="fa-solid fa-arrow-right-arrow-left changeSymbol"></i>
+					<i class="fa-solid fa-arrow-right-from-bracket exit"></i>
+				</div>
 			</div>
 
 			<div class="player">
-				<span class="player__name"><i class="fa-solid fa-o"></i>Computer</span>
+				<span class="player__name">
+					<!-- <i class="fa-solid fa-o"></i> -->
+					<!-- <span>Computer</span> -->
+					<!-- <i class="fa-solid fa-robot icon"></i> -->
+				</span>
 				<span class="player__score">0</span>
 			</div>
 		</section>
 
 		<section class="main">
-			<!-- Menu principal. -->
-			<section class="menu" id="menu">
-				<button class="menu__cta" id="cta-computer"><i class="fa-solid fa-robot"></i>Player vs computer</button>
-				<button class="menu__cta" id="cta-2players"><i class="fa-solid fa-user-group"></i>Two players</button>
-			</section>
-
 			<!-- Tablero -->
-			<section class="cont-board">
-				<div class="board">
-					<div class="board__item"></div>
-					<div class="board__item"></div>
-					<div class="board__item"></div>
-					<div class="board__item"></div>
-					<div class="board__item"></div>
-					<div class="board__item"></div>
-					<div class="board__item"></div>
-					<div class="board__item"></div>
-					<div class="board__item"></div>
-				</div>
-			</section>
+			<div class="board" id="board">
+				<div class="board__item"></div>
+				<div class="board__item"></div>
+				<div class="board__item"></div>
+				<div class="board__item"></div>
+				<div class="board__item"></div>
+				<div class="board__item"></div>
+				<div class="board__item"></div>
+				<div class="board__item"></div>
+				<div class="board__item"></div>
+			</div>
+		</section>
+
+		<!-- Menu principal -->
+		<section class="menu menu--show" id="menu">
+			<button class="menu__cta" value="0"><i class="fa-solid fa-robot"></i>Player vs computer</button>
+			<button class="menu__cta" value="1"><i class="fa-solid fa-user-group"></i>Two players</button>
+		</section>
+
+		<!-- Ventana modal -->
+		<section class="modal" id="modal">
+			<div class="modal__window">
+				<p class="modal__window-sms"></p>
+				<button class="modal__window-cta" value="0">Cancelar</button>
+				<button class="modal__window-cta" value="1">Aceptar</button>
+			</div>
 		</section>
 	</div>
 
-	<script src="./src/script.js"></script>
+	<script src="./src/script.js" type="module"></script>
 </body>
 </html>
