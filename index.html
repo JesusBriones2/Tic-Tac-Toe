@@ -1,75 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tic Tac Toe</title>
 	<script src="https://kit.fontawesome.com/21cece7f89.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="./src/main.css">
+	<link rel="stylesheet" href="./code/main.css">
 </head>
+
 <body>
-	
+
 	<div class="game-container">
 		<section class="header">
 			<div class="player">
 				<span class="player__name">
-					<!-- <i class="fa-solid fa-xmark"></i> -->
-					<!-- <span>Player</span> -->
-					<!-- <i class="fa-solid fa-user icon"></i> -->
+					<i class="fa-solid fa-xmark"></i>
+					<span>Player</span>
+					<i class="fa-solid fa-user icon"></i>
 				</span>
 				<span class="player__score">0</span>
 			</div>
 
-			<div class="title_and_buttons">
-				<h1 class="title">Tic Tac Toe</h1>
-				<div class="buttons" id="buttons">
-					<i class="fa-solid fa-arrows-rotate restart"></i>
-					<i class="fa-solid fa-arrow-right-arrow-left changeSymbol"></i>
-					<i class="fa-solid fa-arrow-right-from-bracket exit"></i>
-				</div>
+			<div class="header__cta">
+				<i class="fa-solid fa-arrows-rotate"></i>
+				<i class="fa-solid fa-arrow-right-arrow-left"></i>
+				<i class="fa-solid fa-arrow-right-from-bracket"></i>
 			</div>
 
-			<div class="player">
+			<div class="player player--turn">
 				<span class="player__name">
-					<!-- <i class="fa-solid fa-o"></i> -->
-					<!-- <span>Computer</span> -->
-					<!-- <i class="fa-solid fa-robot icon"></i> -->
+					<i class="fa-solid fa-o"></i>
+					<span>Computer</span>
+					<i class="fa-solid fa-robot icon"></i>
 				</span>
 				<span class="player__score">0</span>
 			</div>
 		</section>
 
 		<section class="main">
+			<div class="wall"></div>
 			<!-- Tablero -->
-			<div class="board" id="board">
-				<div class="board__item"></div>
-				<div class="board__item"></div>
-				<div class="board__item"></div>
-				<div class="board__item"></div>
-				<div class="board__item"></div>
-				<div class="board__item"></div>
-				<div class="board__item"></div>
-				<div class="board__item"></div>
-				<div class="board__item"></div>
+			<div class="board">
+				<span class="board__item" i="0"></span>
+				<span class="board__item" i="1"></span>
+				<span class="board__item" i="2"></span>
+				<span class="board__item" i="3"></span>
+				<span class="board__item" i="4"></span>
+				<span class="board__item" i="5"></span>
+				<span class="board__item" i="6"></span>
+				<span class="board__item" i="7"></span>
+				<span class="board__item" i="8"></span>
 			</div>
 		</section>
 
 		<!-- Menu principal -->
-		<section class="menu menu--show" id="menu">
-			<button class="menu__cta" value="0"><i class="fa-solid fa-robot"></i>Player vs computer</button>
-			<button class="menu__cta" value="1"><i class="fa-solid fa-user-group"></i>Two players</button>
-		</section>
-
-		<!-- Ventana modal -->
-		<section class="modal" id="modal">
-			<div class="modal__window">
-				<p class="modal__window-sms"></p>
-				<button class="modal__window-cta" value="0">Cancelar</button>
-				<button class="modal__window-cta" value="1">Aceptar</button>
-			</div>
+		<section class="menu menu--show">
+			<h1 class="menu__title">Tic Tac Toe</h1>
+			<button class="menu__cta" value="0">
+				<i class="fa-solid fa-robot"></i>Player vs computer
+			</button>
+			<button class="menu__cta" value="1">
+				<i class="fa-solid fa-user-group"></i>Two players
+			</button>
 		</section>
 	</div>
 
-	<script src="./src/script.js" type="module"></script>
+	<script src="./code/script.js"></script>
 </body>
+
 </html>
