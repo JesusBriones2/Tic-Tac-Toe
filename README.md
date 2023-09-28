@@ -1,7 +1,7 @@
 # Tic Tac Toe
-Juego de tres en raya con HTML, CSS, JAVASCRIPT.
+Tic-Tac-Toe Game: A Responsive Implementation Using HTML, CSS, and JavaScript
 
-* [Enlace](https://jesusbriones2.github.io/Tic-Tac-Toe/)
+* [Game page: ](https://jesusbriones2.github.io/Tic-Tac-Toe/)
 
 
-![Screenshot of the page.](screenshot.png "Screenshot of the page.")
+![Screenshot of the page.](./src/img/picture.png "Screenshot of the page.")

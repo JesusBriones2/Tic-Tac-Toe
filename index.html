@@ -4,69 +4,79 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Tic Tac Toe</title>
-	<script src="https://kit.fontawesome.com/21cece7f89.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="./code/main.css">
+	<meta name="autor" content="Jesus Briones">
+	<meta name="description" content="Three-in-a-row game with beautiful and responsive design">
+	<title>Tic-Tac-Toe</title>
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="./src/icons/icons.css">
+	<link rel="stylesheet" href="./src/styles.css">
+	<script defer src="./src/script.js"></script>
 </head>
 
 <body>
 
-	<div class="game-container">
-		<section class="header">
-			<div class="player">
-				<span class="player__name">
-					<i class="fa-solid fa-xmark"></i>
-					<span>Player</span>
-					<i class="fa-solid fa-user icon"></i>
-				</span>
-				<span class="player__score">0</span>
+	<main class="container">
+
+		<header class="header">
+			<div class="header__icons">
+				<i class="header__icon icon-x"></i>
+				<i class="header__icon icon-o"></i>
 			</div>
 
-			<div class="header__cta">
-				<i class="fa-solid fa-arrows-rotate"></i>
-				<i class="fa-solid fa-arrow-right-arrow-left"></i>
-				<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			<div class="header__turn">
+				<i class="header__turn-icon icon-x"></i>
+				<h3 class="header__text">Turn</h3>
 			</div>
 
-			<div class="player player--turn">
-				<span class="player__name">
-					<i class="fa-solid fa-o"></i>
-					<span>Computer</span>
-					<i class="fa-solid fa-robot icon"></i>
-				</span>
-				<span class="player__score">0</span>
+			<div class="header__cta-cont">
+				<button class="header__cta icon-arrow-rotate-right"></button>
 			</div>
-		</section>
+		</header>
 
-		<section class="main">
-			<div class="wall"></div>
-			<!-- Tablero -->
+		<section class="board-container">
+			<div class="wall"></div> 
 			<div class="board">
-				<span class="board__item" i="0"></span>
-				<span class="board__item" i="1"></span>
-				<span class="board__item" i="2"></span>
-				<span class="board__item" i="3"></span>
-				<span class="board__item" i="4"></span>
-				<span class="board__item" i="5"></span>
-				<span class="board__item" i="6"></span>
-				<span class="board__item" i="7"></span>
-				<span class="board__item" i="8"></span>
+				<span class="board__item" data-i="0"></span>
+				<span class="board__item" data-i="1"></span>
+				<span class="board__item" data-i="2"></span>
+				<span class="board__item" data-i="3"></span>
+				<span class="board__item" data-i="4"></span>
+				<span class="board__item" data-i="5"></span>
+				<span class="board__item" data-i="6"></span>
+				<span class="board__item" data-i="7"></span>
+				<span class="board__item" data-i="8"></span>
 			</div>
 		</section>
 
-		<!-- Menu principal -->
-		<section class="menu menu--show">
-			<h1 class="menu__title">Tic Tac Toe</h1>
-			<button class="menu__cta" value="0">
-				<i class="fa-solid fa-robot"></i>Player vs computer
-			</button>
-			<button class="menu__cta" value="1">
-				<i class="fa-solid fa-user-group"></i>Two players
-			</button>
+		<section class="score">
+			<div class="score__player">
+				<span class="score__name">YOU</span>
+				<span class="score__point">0</span>
+			</div>
+			<div class="score__player">
+				<span class="score__point">0</span>
+				<span class="score__name">CPU</span>
+			</div>
 		</section>
-	</div>
 
-	<script src="./code/script.js"></script>
+		<footer class="links">
+			<p class="links__paragraph">
+				Made by <a href="#" class="link__portfolio">Jesus Briones</a>
+			</p>
+			<a href="#" class="link__github icon-github"></a>
+		</footer>
+	</main>
+
+	<!-- <div class="modal-bg">
+		<div class="modal">
+			<h3 class="modal__text">Winner !</h3>
+			<i class="icon-x modal__icon"></i>
+		</div>
+	</div> -->
+
 </body>
-
 </html>
