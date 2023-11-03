@@ -1,0 +1,383 @@
+/** Diseño pensado en Mobile first */
+
+:root {
+    
+    --white: #fff;
+    --charcoal: #374151;
+    --blue-gray: #4E5D73;
+    --mint-green: #4DC275;
+    --royal-blue: #6679f1;
+    --salmon-pink: #D56565;
+    --olive-yellow: #CDAF1D;
+    --midnight-blue: #181B2F;
+    --royal-blue-300: #4659d0;
+    --dark-blue-gray: #272D3F;
+    --very-light-blue: #bcbcd4;
+    --salmon-pink-300: #e44646;
+    
+    --shadow: 0 6px 0 #0F111E; 
+    --time: .2s;
+    --radius: 10px;
+}
+
+body {
+    -webkit-tap-highlight-color: transparent;
+    background-color: var(--midnight-blue);
+    font-family: 'Fredoka', sans-serif;
+    color: var(--very-light-blue);
+}
+
+body * {
+    /* outline: 1px solid red; */
+}
+
+
+/* Contenedor principal */
+.main {
+    width: min(320px, 90%);
+    height: 100dvh;
+    margin: 0 auto;
+    padding: 20px 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+/** Sección header ---> */
+.header {
+    font-size: 1.5rem;
+    display: flex;
+    gap: 20px;
+}
+
+/* bloque icons */
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-x {
+    color: var(--salmon-pink);
+}
+
+.icon-o {
+    color: var(--royal-blue);
+}
+
+/* bloque turn */
+.turn {
+    background-color: var(--dark-blue-gray);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    font-weight: 600;
+    padding: 0 10px;
+    
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.turn__text {
+    font-size: 28px;
+}
+
+/* botón reiniciar */
+.button-reset {
+    padding: 15px;
+    background-color: var(--dark-blue-gray);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition-property: transform, background-color, color;
+    transition-duration: var(--time);
+}
+
+.button-reset:active {
+    background-color: var(--olive-yellow);
+    color: var(--midnight-blue);
+    transform: scale(.9);
+}
+
+
+
+/** Sección del tablero ---> */
+/* tablero */
+.board {
+    width: 100%;
+    aspect-ratio: 1/1;
+    position: relative;
+    
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    gap: 10px;
+}
+
+/* casillas del tablero */
+.board__item {
+    background-color: var(--dark-blue-gray);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: background-color var(--time);
+
+    display: grid;
+    place-items: center;
+    font-size: 2.5rem;
+}
+
+.board__item:active:not([class*="icon"]) {
+    background-color: var(--charcoal);
+}
+
+/* tapa transparente del tablero */
+.wall {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wall--show {
+    z-index: 1;
+}
+
+
+
+/** Animación tablero lleno y jugador ganador  */
+.board__item--win {
+    animation-name: item-win;
+}
+.board__item--full {
+    animation-name: item-full;
+}
+
+.board__item--win,
+.board__item--full {
+    color: var(--very-light-blue);
+    animation-duration: .2s;
+    animation-direction: alternate;
+    animation-iteration-count: 5;
+    animation-fill-mode: forwards;
+}
+
+@keyframes item-win {
+    100% {
+        background-color: var(--mint-green);
+    }
+}
+@keyframes item-full {
+    100% {
+        background-color: var(--salmon-pink);
+    }
+}
+
+
+
+/** Sección de puntos del jugador ---> */
+.score {
+    position: relative;
+    display: flex;
+    gap: 20px;
+}
+
+.player {
+    flex-grow: 1;
+    flex-basis: 100%;
+    padding: 5px 15px;
+    background-color: var(--salmon-pink);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform var(--time);
+
+    font-size: 1.875rem;
+    font-weight: 600;
+    user-select: none;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.player:nth-child(2) {
+    background-color: var(--royal-blue-300);
+}
+
+.player:nth-child(2):active {
+    background-color: var(--royal-blue);
+    transform: scale(.9);
+}
+
+
+
+/* Mensaje de cambiar modo de juego */
+.message-box {
+    display: none;
+    padding: 20px;
+    width: max-content;
+    background-color: var(--blue-gray);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+
+    position: absolute;
+    z-index: 10;
+    bottom: 150%;
+    right: 10px;
+}
+
+.message__title {
+    font-weight: 600;
+    font-size: 1.5625em;
+}
+
+.message__text {
+    font-weight: 400;
+    font-size: 1.375em;
+    position: relative;
+    z-index: 1;
+}
+
+.message__icon {
+    background-color: var(--very-light-blue);
+    color: var(--salmon-pink);
+    border-radius: 50%;
+    font-size: 37px;
+    
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+.message__icon:active {
+    color: var(--salmon-pink-300);
+}
+
+/* Flecha del mensaje */
+.message-box::before {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 30px;
+    background-color: inherit;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    
+    position: absolute;
+    right: 20px;
+    bottom: -25px;
+}
+
+.message-box--show {
+    display: block;
+    animation-name: showSms;
+    animation-duration: var(--time);
+}
+
+@keyframes showSms {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+
+/** Sección de enlaces ---> */
+.links {
+    font-size: 1.375rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.link__github {
+    text-decoration: none;
+    font-size: 1.875rem;
+}
+.link__github:active {
+    color: var(--white);
+}
+
+.link__portfolio {
+    color: var(--olive-yellow);
+}
+.link__portfolio:active {
+    color: var(--white);
+}
+
+
+
+@media (width < 300px) {
+
+    .icons {
+        display: none;
+    }
+
+    .score {
+        flex-wrap: wrap;
+    }
+
+    .message-box {
+        width: 90%;
+        bottom: 65%;
+        font-size: .875rem;
+    }
+}
+
+@media (width > 400px) {
+    html {
+        font-size: 14px;
+    }
+
+    .button-reset:hover {
+        background-color: var(--olive-yellow);
+        color: var(--midnight-blue);
+        cursor: default;
+    }
+
+    .board__item:hover:not([class*="icon"]) {
+        background-color: var(--charcoal);
+    }
+
+    .player:hover:nth-child(2) {
+        background-color: var(--royal-blue);
+    }
+
+    .message__icon:hover {
+        color: var(--salmon-pink-300);
+    }
+
+    .link__portfolio:hover {
+        color: var(--white);
+    }
+    
+    .link__github:hover {
+        color: var(--white);
+    }    
+}
+
+@media (width > 900px) {
+    /* Cambia de lugar el mensaje */
+    .message-box {    
+        bottom: 0;
+        left: 110%;
+    }
+
+    .message-box::before {
+        left: -28px;
+        bottom: 0;
+        width: 30px;
+        height: 50px;
+        clip-path: polygon(0 50%, 100% 20%, 100% 80%);
+    }
+}

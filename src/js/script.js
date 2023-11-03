@@ -2,14 +2,16 @@ const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
 
 const CSS_CLASS = Object.freeze({
+  turn: '.turn__icon',
+  reset: '.button-reset',
+  wall: '.wall',
+  
+  
+  players: '.score__player',
   score: '.score',
   boardItem: '.board__item',
   boardItem2: 'board__item',
   board: '.board',
-  wall: '.wall',
-  turn: '.header__turn-icon',
-  players: '.score__player',
-  reset: '.header__cta',
   smsCta: '.message__cta',
   pointBox: '.score__point'
 })
@@ -20,6 +22,12 @@ const $board = $(CSS_CLASS.board)
 const $items = $$(CSS_CLASS.boardItem)
 const $players = $$(CSS_CLASS.players)
 const $buttonReset = $(CSS_CLASS.reset)
+
+let playersScore = [0, 0]
+let board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+let mode = 0
+let turn = 0
+let winner = false
 
 const icons = ['icon-x', 'icon-o']
 const combinations = [
@@ -33,13 +41,6 @@ const combinations = [
   [2, 4, 6]
 ]
 
-let playersScore = [0, 0]
-let board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-let mode = 0
-let turn = 0
-let winner = false
-
-
 
 // Controlador de evento en el tablero para iniciar el juego.
 $board.addEventListener('click', (e) => {
@@ -47,8 +48,6 @@ $board.addEventListener('click', (e) => {
   if (item) playTurn(item.dataset.i)
   robot()
 })
-
-
 
 // Controlador de evento para limpiar el tablero al terminar una ronda.
 let counter = 0
@@ -64,8 +63,6 @@ $board.addEventListener('animationend', () => {
   }, 800)
 })
 
-
-
 // Alterna el modo de juego entre: player-player y player-cpu.
 $players[1].addEventListener('click', () => {
   mode = mode ? 0 : 1
@@ -74,13 +71,10 @@ $players[1].addEventListener('click', () => {
   reset()
 })
 
-
 // controlador de evento al botón para reiniciar el juego.
 $buttonReset.addEventListener('click', () => {
   if (!(turn === 1 && mode === 0)) reset()
 })
-
-
 
 // Función que controla la acción del jugador en turno.
 function playTurn(index) {
@@ -105,8 +99,6 @@ function playTurn(index) {
   changeTurn()
 }
 
-
-
 // Verifica si las casillas ocupadas cumplen un patron de combinaciones.
 function checkCombination() {
   let coincidences = 0
@@ -121,15 +113,11 @@ function checkCombination() {
   }
 }
 
-
-
 // Agrega una capa transparente al tablero para evitar click innecesarios.
 function wall(active = true) {
   const classWall = 'wall--show'
   active ? $wall.classList.add(classWall) : $wall.classList.remove(classWall)
 }
-
-
 
 // Agrega animación win a las casillas.
 function winAnimation(combination) {
@@ -138,16 +126,12 @@ function winAnimation(combination) {
   }
 }
 
-
-
 // Incrementa los puntos del jugador en turno.
 function increaseScore(increase = true) {
   if (increase) ++playersScore[turn]
   $players[0].querySelector(CSS_CLASS.pointBox).textContent = playersScore[0]
   $players[1].querySelector(CSS_CLASS.pointBox).textContent = playersScore[1]
 }
-
-
 
 // Hace el cambio de turno en cada ronda.
 function changeTurn() {
@@ -156,16 +140,12 @@ function changeTurn() {
   $turn.classList.replace(icons[previousTurn], icons[turn])
 }
 
-
-
 // Agrega animación full a las casillas.
 function fullAnimation() {
   for (const elem of $items) {
     elem.classList.add('board__item--full')
   }
 }
-
-
 
 // Se encarga de volver al tablero a su estado inicial.
 function clearBoard() {
@@ -175,8 +155,6 @@ function clearBoard() {
   wall(false)
   board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 }
-
-
 
 // Reinicia el juego por completo.
 function reset() {
@@ -188,32 +166,25 @@ function reset() {
   $turn.setAttribute('class', 'header__turn-icon icon-x')
 }
 
-
-
 // Algoritmo de simulación de inteligencia para el jugador CPU.
 function robot() {
   if (!(mode === 0 && turn === 1 && winner === false)) return
 
   wall()
   setTimeout(() => {
-    const emptyBoxes = board.map((element, index) => (
-      element === 0 ? index : -1
-    )).filter(index => index !== -1)
-    
+    const emptyBoxes = board
+      .map((element, index) => (element === 0 ? index : -1))
+      .filter((index) => index !== -1)
+
     const numRandom = randInt(0, emptyBoxes.length - 1)
     playTurn(emptyBoxes[numRandom])
-    
+
     if (!winner) wall(false)
   }, 1000)
 }
 
-
-
 // Generador de números pseudo-aleatorios.
-const randInt = (min, max) =>
-  Math.floor((Math.random() * (max - min + 1)) + min)
-
-
+const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
 // popup message - info de cambio de modo
 setTimeout(() => {

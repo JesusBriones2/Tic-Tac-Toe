@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Fredoka';
+    src: url('./Fredoka-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Fredoka';
+    src: url('./Fredoka-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+}
