@@ -119,7 +119,7 @@ body * {
 }
 
 /* casillas del tablero */
-.board__item {
+.board__slot {
     background-color: var(--dark-blue-gray);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -130,9 +130,25 @@ body * {
     font-size: 2.5rem;
 }
 
-.board__item:active:not([class*="icon"]) {
+.board__slot:active:not([class*="icon"]) {
     background-color: var(--charcoal);
 }
+
+.board__slot[class*="icon"] {
+    animation-name: showIcon;
+    animation-duration: var(--time);
+}
+
+@keyframes showIcon {
+    from {
+        font-size: 0px;
+    }
+    to {
+        font-size: 2.5rem;
+    }
+}
+
+
 
 /* tapa transparente del tablero */
 .wall {
@@ -151,15 +167,19 @@ body * {
 
 
 /** Animación tablero lleno y jugador ganador  */
-.board__item--win {
-    animation-name: item-win;
+/* 
+    Se usó la ".board__slot" para igualar la especificidad con el selector
+    ".board__slot[class*="icon"]" para que funcione la animación.
+*/
+.board__slot.board__slot--win {
+    animation-name: player-win;
 }
-.board__item--full {
-    animation-name: item-full;
+.board__slot.board__slot--full {
+    animation-name: board-full;
 }
 
-.board__item--win,
-.board__item--full {
+.board__slot--win,
+.board__slot--full {
     color: var(--very-light-blue);
     animation-duration: .2s;
     animation-direction: alternate;
@@ -167,12 +187,12 @@ body * {
     animation-fill-mode: forwards;
 }
 
-@keyframes item-win {
+@keyframes player-win {
     100% {
         background-color: var(--mint-green);
     }
 }
-@keyframes item-full {
+@keyframes board-full {
     100% {
         background-color: var(--salmon-pink);
     }
@@ -181,7 +201,7 @@ body * {
 
 
 /** Sección de puntos del jugador ---> */
-.score {
+.marker {
     position: relative;
     display: flex;
     gap: 20px;
@@ -277,6 +297,10 @@ body * {
     animation-duration: var(--time);
 }
 
+.message-box--remove {
+    animation-name: removeSms;
+}
+
 @keyframes showSms {
     from {
         transform: scale(0);
@@ -286,6 +310,13 @@ body * {
     to {
         transform: scale(1);
         opacity: 1;
+    }
+}
+
+@keyframes removeSms {
+    100% {
+        transform: scale(0);
+        opacity: 0;
     }
 }
 
@@ -323,7 +354,7 @@ body * {
         display: none;
     }
 
-    .score {
+    .marker {
         flex-wrap: wrap;
     }
 
@@ -345,7 +376,7 @@ body * {
         cursor: default;
     }
 
-    .board__item:hover:not([class*="icon"]) {
+    .board__slot:hover:not([class*="icon"]) {
         background-color: var(--charcoal);
     }
 
