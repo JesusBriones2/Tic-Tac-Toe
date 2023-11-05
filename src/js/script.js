@@ -73,7 +73,7 @@ $players[1].addEventListener('click', () => {
   if (turn === 1 && gameMode === 0) return
 
   gameMode = gameMode ? 0 : 1
-  $players[0].firstElementChild.textContent = gameMode ? 'P1' : 'YOU'
+  $players[0].firstElementChild.textContent = gameMode ? 'P1' : 'TU'
   $players[1].lastElementChild.textContent = gameMode ? 'P2' : 'CPU'
   reset()
 })
