@@ -13,7 +13,7 @@
     --royal-blue-300: #4659d0;
     --dark-blue-gray: #272D3F;
     --very-light-blue: #bcbcd4;
-    --salmon-pink-300: #e44646;
+    --salmon-pink-300: #e75252;
     
     --shadow: 0 6px 0 #0F111E; 
     --time: .2s;
@@ -211,7 +211,7 @@ body * {
     flex-grow: 1;
     flex-basis: 100%;
     padding: 5px 15px;
-    background-color: var(--salmon-pink);
+    background-color: var(--salmon-pink-300);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     transition: transform var(--time);

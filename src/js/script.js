@@ -2,6 +2,8 @@ const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
 const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
+
+
 const CSS_CLASS = Object.freeze({
   board: '.board',
   slot: '.board__slot',
@@ -14,19 +16,12 @@ const CSS_CLASS = Object.freeze({
   reset: '.button-reset'
 })
 
-
 const $wall = $(CSS_CLASS.wall)
 const $turn = $(CSS_CLASS.turn)
 const $board = $(CSS_CLASS.board)
 const $slots = $$(CSS_CLASS.slot)
 const $players = $$(CSS_CLASS.players)
 const $buttonReset = $(CSS_CLASS.reset)
-
-let scores = [0, 0]
-let board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-let gameMode = 0
-let turn = 0
-let roundFinished = false
 
 const icons = ['icon-x', 'icon-o']
 const combinations = [
@@ -40,28 +35,34 @@ const combinations = [
   [2, 4, 6]
 ]
 
+let board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+let roundFinished = false // ? Considerar quitarla
+let scores = [0, 0]
+let gameMode = 0
+let turn = 0
+
+
 
 // Evento en el tablero para iniciar el juego.
 $board.addEventListener('click', (e) => {
-  console.log(scores)
-  console.log(board)
-  console.log(gameMode)
-  console.log(turn)
-  console.log(roundFinished)
-
   const item = e.target.closest(CSS_CLASS.slot)
-  if (turn === 0) {
-    if (item) playTurn(item.dataset.i)
+
+  if (item) {
+    playTurn(item.dataset.i)
     robot()
   }
 })
 
 
-// Evento para limpiar el tablero al terminar una ronda.
-//  "animEnd" se usar para detectar la finalización de una animación
-//   ya que se ejecutan varias por el numero de casillas animadas.
+
+/*
+  Evento para limpiar el tablero al terminar una ronda.
+  
+  La variable "animEnd" se usar para detectar la finalización de una animación
+  ya que se ejecutan varias por cada slot animado.
+*/
 let animEnd = false
-$board.addEventListener('animationend', () => {
+$board.addEventListener('animationend', (e) => {
   if (animEnd || !roundFinished) return
 
   animEnd = true
@@ -72,6 +73,7 @@ $board.addEventListener('animationend', () => {
     robot()
   }, 800)
 })
+
 
 
 // Alterna el modo de juego entre: player-player y player-cpu.
@@ -85,6 +87,7 @@ $players[1].addEventListener('click', () => {
 })
 
 
+
 // controlador de evento al botón para reiniciar el juego.
 $buttonReset.addEventListener('click', () => {
   // No hace el reset si el turno es de la cpu.
@@ -92,15 +95,15 @@ $buttonReset.addEventListener('click', () => {
 })
 
 
+
 // Función que controla la acción del jugador en turno.
 function playTurn(index) {
-  if (board[index]) return // verifica si ya esta ocupado el slot cliqueado.
+  if (board[index]) return // Verifica si esta ocupado el slot cliqueado.
 
   $slots[index].classList.add(icons[turn])
   board[index] = icons[turn]
 
   // Se verifica si el jugador ha completado una combinación
-  // para mostrar que ha ganado.
   const combination = checkCombination()
   if (combination) {
     wall()
@@ -142,12 +145,21 @@ function wall(active = true) {
 }
 
 
+
 // Ejecuta la animación win a las casillas.
 function winAnimation(combination) {
   for (const num of combination) {
     $slots[num].classList.add('board__slot--win')
   }
 }
+
+// Agrega animación de que todas las casillas están llenas.
+function animationFullBoard() {
+  for (const slot of $slots) {
+    slot.classList.add('board__slot--full')
+  }
+}
+
 
 
 // Controla todo lo que sucede con los puntos de los jugadores.
@@ -161,20 +173,13 @@ function scoreController(reset) {
 }
 
 
-// Hace el cambio de turno en cada ronda.
+// Controla el cambio de turno de los jugadores.
 function changeTurn() {
   const previousTurn = turn
   turn = turn ? 0 : 1
   $turn.classList.replace(icons[previousTurn], icons[turn])
 }
 
-
-// Agrega animación de que todas las casillas están llenas.
-function animationFullBoard() {
-  for (const slot of $slots) {
-    slot.classList.add('board__slot--full')
-  }
-}
 
 
 // Se encarga de volver al tablero a su estado inicial.
