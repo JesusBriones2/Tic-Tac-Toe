@@ -43,6 +43,12 @@ const combinations = [
 
 // Evento en el tablero para iniciar el juego.
 $board.addEventListener('click', (e) => {
+  console.log(scores)
+  console.log(board)
+  console.log(gameMode)
+  console.log(turn)
+  console.log(roundFinished)
+
   const item = e.target.closest(CSS_CLASS.slot)
   if (turn === 0) {
     if (item) playTurn(item.dataset.i)
@@ -57,7 +63,7 @@ $board.addEventListener('click', (e) => {
 let animEnd = false
 $board.addEventListener('animationend', () => {
   if (animEnd || !roundFinished) return
-  
+
   animEnd = true
   setTimeout(() => {
     roundFinished = false
