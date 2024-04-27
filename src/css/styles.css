@@ -1,7 +1,12 @@
 /** Diseño pensado en Mobile first */
+/*
+    Se usa :active para mostrar interacción en mobile ya que cambia 
+    al estilo de active y vuelve al estilo original. En cambio con :hover se 
+    queda el estilo de hover aplicado.
+*/
 
 :root {
-    
+
     --white: #fff;
     --charcoal: #374151;
     --blue-gray: #4E5D73;
@@ -14,8 +19,8 @@
     --dark-blue-gray: #272D3F;
     --very-light-blue: #bcbcd4;
     --salmon-pink-300: #e75252;
-    
-    --shadow: 0 6px 0 #0F111E; 
+
+    --shadow: 0 6px 0 #0F111E;
     --time: .2s;
     --radius: 10px;
 }
@@ -27,37 +32,15 @@ body {
     color: var(--very-light-blue);
 }
 
-body * {
-    /* outline: 1px solid red; */
-}
-
-
-/* Contenedor principal */
 .main {
     width: min(320px, 90%);
     height: 100dvh;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 25px 0;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-
-
-/** Sección header ---> */
-.header {
-    font-size: 1.5rem;
-    display: flex;
-    gap: 20px;
-}
-
-/* bloque icons */
-.icons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
 .icon-x {
@@ -68,26 +51,35 @@ body * {
     color: var(--royal-blue);
 }
 
-/* bloque turn */
+
+/** Sección de turno de jugador  */
+.header {
+    font-size: 1.5rem;
+    display: flex;
+    gap: 20px;
+}
+
+.header__icons {
+    align-content: center;
+}
+
 .turn {
     background-color: var(--dark-blue-gray);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     font-weight: 600;
     padding: 0 10px;
-    
+
     flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    text-align: center;
+    align-content: center;
 }
 
 .turn__text {
     font-size: 28px;
+    margin-left: 10px;
 }
 
-/* botón reiniciar */
 .button-reset {
     padding: 15px;
     background-color: var(--dark-blue-gray);
@@ -104,33 +96,30 @@ body * {
 }
 
 
-
-/** Sección del tablero ---> */
-/* tablero */
+/** Sección del tablero de juego */
 .board {
     width: 100%;
     aspect-ratio: 1/1;
     position: relative;
-    
+
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     gap: 10px;
 }
 
-/* casillas del tablero */
 .board__slot {
     background-color: var(--dark-blue-gray);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     transition: background-color var(--time);
 
-    display: grid;
-    place-items: center;
+    text-align: center;
+    align-content: center;
     font-size: 2.5rem;
 }
 
-.board__slot:active:not([class*="icon"]) {
+.board__slot:active {
     background-color: var(--charcoal);
 }
 
@@ -143,20 +132,15 @@ body * {
     from {
         font-size: 0px;
     }
+
     to {
         font-size: 2.5rem;
     }
 }
 
-
-
-/* tapa transparente del tablero */
 .wall {
-    width: 100%;
-    height: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     z-index: -1;
 }
 
@@ -166,14 +150,16 @@ body * {
 
 
 
-/** Animación tablero lleno y jugador ganador  */
+/*? Esto se podría mejorar  */
+/* Animación tablero lleno y jugador ganador  */
 /* 
-    Se usó la ".board__slot" para igualar la especificidad con el selector
+    Se usó la clase ".board__slot" para igualar la especificidad con el selector
     ".board__slot[class*="icon"]" para que funcione la animación.
 */
 .board__slot.board__slot--win {
     animation-name: player-win;
 }
+
 .board__slot.board__slot--full {
     animation-name: board-full;
 }
@@ -192,6 +178,7 @@ body * {
         background-color: var(--mint-green);
     }
 }
+
 @keyframes board-full {
     100% {
         background-color: var(--salmon-pink);
@@ -203,13 +190,12 @@ body * {
 /** Sección de puntos del jugador ---> */
 .marker {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
 .player {
-    flex-grow: 1;
-    flex-basis: 100%;
     padding: 5px 15px;
     background-color: var(--salmon-pink-300);
     border-radius: var(--radius);
@@ -235,9 +221,8 @@ body * {
 
 
 
-/* Mensaje de cambiar modo de juego */
-.message-box {
-    display: none;
+/** Mensaje de info de como cambiar modo de juego */
+.msg-box {
     padding: 20px;
     width: max-content;
     background-color: var(--blue-gray);
@@ -248,60 +233,60 @@ body * {
     z-index: 10;
     bottom: 150%;
     right: 10px;
+
+    animation-name: showMsg;
+    animation-duration: var(--time);
+    animation-delay: 1s;
+    animation-fill-mode: both;
 }
 
-.message__title {
+.msg-box:has(input:checked) {
+    animation-name: removeMsg;
+    animation-delay: 0s;
+}
+
+.msg__title {
     font-weight: 600;
     font-size: 1.5625em;
 }
 
-.message__text {
+.msg__text {
     font-weight: 400;
     font-size: 1.375em;
-    position: relative;
-    z-index: 1;
 }
 
-.message__icon {
-    background-color: var(--very-light-blue);
-    color: var(--salmon-pink);
-    border-radius: 50%;
-    font-size: 37px;
-    
+.msg__label {
     position: absolute;
     top: -10px;
     right: -10px;
 }
 
-.message__icon:active {
+.msg__icon {
+    background-color: white;
+    color: var(--salmon-pink);
+    font-size: 37px;
+    border-radius: 100%;
+}
+
+.msg__icon:active {
     color: var(--salmon-pink-300);
 }
 
 /* Flecha del mensaje */
-.message-box::before {
+.msg-box::before {
     content: "";
     display: block;
     width: 50px;
     height: 30px;
     background-color: inherit;
     clip-path: polygon(0 0, 100% 0, 50% 100%);
-    
+
     position: absolute;
     right: 20px;
     bottom: -25px;
 }
 
-.message-box--show {
-    display: block;
-    animation-name: showSms;
-    animation-duration: var(--time);
-}
-
-.message-box--remove {
-    animation-name: removeSms;
-}
-
-@keyframes showSms {
+@keyframes showMsg {
     from {
         transform: scale(0);
         opacity: 0;
@@ -313,10 +298,11 @@ body * {
     }
 }
 
-@keyframes removeSms {
+@keyframes removeMsg {
     100% {
         transform: scale(0);
         opacity: 0;
+        display: none;
     }
 }
 
@@ -333,8 +319,9 @@ body * {
 
 .link__github {
     text-decoration: none;
-    font-size: 1.875rem;
+    font-size: 1.5rem;
 }
+
 .link__github:active {
     color: var(--white);
 }
@@ -342,25 +329,20 @@ body * {
 .link__portfolio {
     color: var(--olive-yellow);
 }
+
 .link__portfolio:active {
-    color: var(--white);
+    text-decoration: underline;
 }
 
 
 
-@media (width < 300px) {
-
-    .icons {
+@media (width < 330px) {
+    .header__icons {
         display: none;
     }
 
-    .marker {
-        flex-wrap: wrap;
-    }
-
-    .message-box {
+    .msg-box {
         width: 90%;
-        bottom: 65%;
         font-size: .875rem;
     }
 }
@@ -384,27 +366,26 @@ body * {
         background-color: var(--royal-blue);
     }
 
-    .message__icon:hover {
+    .msg__icon:hover {
         color: var(--salmon-pink-300);
     }
 
     .link__portfolio:hover {
         color: var(--white);
     }
-    
+
     .link__github:hover {
         color: var(--white);
-    }    
+    }
 }
 
 @media (width > 900px) {
-    /* Cambia de lugar el mensaje */
-    .message-box {    
+    .msg-box {
         bottom: 0;
         left: 110%;
     }
 
-    .message-box::before {
+    .msg-box::before {
         left: -28px;
         bottom: 0;
         width: 30px;

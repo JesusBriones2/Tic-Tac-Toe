@@ -1,92 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Tic Tac Toe</title>
+    <link rel="icon" href="./src/img/favicon.svg" />
+    <link rel="stylesheet" href="./src/fonts/main.css" />
+    <link rel="stylesheet" href="./src/icons/icons.css" />
+    <link rel="stylesheet" href="./src/css/base.css" />
+    <link rel="stylesheet" href="./src/css/styles.css" />
 
-	<link rel="stylesheet" href="./src/fonts/main.css">
-	<link rel="stylesheet" href="./src/icons/icons.css">
-	<link rel="stylesheet" href="./src/css/base.css">
-	<link rel="stylesheet" href="./src/css/styles.css">
-	<link rel="icon" href="./src/img/favicon.png">
+    <script defer src="./src/js/script.js"></script>
 
-	<script defer src="./src/js/script.js"></script>
+    <meta name="autor" content="lbrione - Jesus Briones" />
+    <meta
+      name="description"
+      content="Juego de tres en raya con un diseño atractivo y responsivo hecho con las tecnologías bases de la web."
+    />
+    <meta name="keywords" content="HTML, CSS, JavaScript, Desarrollo web" />
+  </head>
 
-	<meta name="autor" content="Jesus Briones">
-	<meta 
-		name="description" 
-		content="Juego de tres en raya con un diseño atractivo y responsivo"
-	>
-</head>
+  <body>
+    <main class="main">
+      <header class="header">
+        <div class="header__icons">
+          <i class="header__icon icon-x"></i>
+          <i class="header__icon icon-o"></i>
+        </div>
 
-<body>
+        <div class="turn">
+          <i class="turn__icon icon-x"></i>
+          <span class="turn__text">Turno</span>
+        </div>
 
-	<main class="main">
+        <button class="button-reset icon-arrow-rotate-right"></button>
+      </header>
 
-		<header class="header">
-			<div class="icons">
-				<i class="icons__icon icon-x"></i>
-				<i class="icons__icon icon-o"></i>
-			</div>
+      <section class="board">
+        <div class="wall"></div>
+        <span class="board__slot" data-i="0"></span>
+        <span class="board__slot" data-i="1"></span>
+        <span class="board__slot" data-i="2"></span>
+        <span class="board__slot" data-i="3"></span>
+        <span class="board__slot" data-i="4"></span>
+        <span class="board__slot" data-i="5"></span>
+        <span class="board__slot" data-i="6"></span>
+        <span class="board__slot" data-i="7"></span>
+        <span class="board__slot" data-i="8"></span>
+      </section>
 
-			<div class="turn">
-				<i class="turn__icon icon-x"></i>
-				<h3 class="turn__text">Turno</h3>
-			</div>
+      <section class="marker">
+        <article class="player">
+          <span class="player__name">TU</span>
+          <span class="player__score">0</span>
+        </article>
+        <article class="player">
+          <span class="player__score">0</span>
+          <span class="player__name">CPU</span>
+        </article>
 
-			<button class="button-reset icon-arrow-rotate-right"></button>
-		</header>
+        <div class="msg-box">
+          <h3 class="msg__title">Cambiar Modo</h3>
+          <p class="msg__text">- Jugador vs Jugador</p>
+          <p class="msg__text">- Jugador vs CPU</p>
+          <label class="msg__label">
+            <i class="msg__icon icon-x-circle"></i>
+            <input type="checkbox" hidden>
+          </label>
+        </div>
+      </section>
 
-		<section class="board">
-			<div class="wall"></div> 
-			<span class="board__slot" data-i="0"></span>
-			<span class="board__slot" data-i="1"></span>
-			<span class="board__slot" data-i="2"></span>
-			<span class="board__slot" data-i="3"></span>
-			<span class="board__slot" data-i="4"></span>
-			<span class="board__slot" data-i="5"></span>
-			<span class="board__slot" data-i="6"></span>
-			<span class="board__slot" data-i="7"></span>
-			<span class="board__slot" data-i="8"></span>
-		</section>
-
-		<section class="marker">
-			<article class="player">
-				<span class="player__name">TU</span>
-				<span class="player__score">0</span>
-			</article>
-			<article class="player">
-				<span class="player__score">0</span>
-				<span class="player__name">CPU</span>
-			</article>
-
-			<div class="message-box">
-				<h3 class="message__title">Cambiar Modo</h3>
-				<p class="message__text">- Jugador vs Jugador</p>
-				<p class="message__text">- Jugador vs CPU</p>
-				<i class="message__icon icon-x-circle"></i>
-			</div>
-		</section>
-
-		<footer class="links">
-			<p class="links__text">
-				Made by
-				<a 
-					href="https://lbrione.github.io/portfolio/" 
-					target="_blank"
-					class="link__portfolio">
-					lbrione
-				</a>
-			</p>
-			<a 
-				href="https://github.com/lbrione/tic-tac-toe"
-				target="_blank"
-				class="link__github icon-github"
-			></a>
-		</footer>
-	</main>
-
-</body>
+      <footer class="links">
+        <p class="links__text">
+          Hecho por
+          <a
+            href="https://lbrione.github.io/portfolio/"
+            target="_blank"
+            class="link__portfolio"
+          >
+            lbrione
+          </a>
+        </p>
+        <span>|</span>
+        <a
+          href="https://github.com/lbrione/tic-tac-toe"
+          target="_blank"
+          class="link__github icon-github"
+        ></a>
+      </footer>
+    </main>
+  </body>
 </html>
