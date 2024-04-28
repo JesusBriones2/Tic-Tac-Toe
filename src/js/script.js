@@ -1,8 +1,8 @@
-const $ = (selector) => document.querySelector(selector)
+const $ = (selector, context = document) => context.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
 const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
-const CSS_CLASS = Object.freeze({
+const CONST = Object.freeze({
   board: '.board',
   slot: '.board__slot',
   wall: '.wall',
@@ -14,12 +14,12 @@ const CSS_CLASS = Object.freeze({
   reset: '.button-reset',
 })
 
-const $wall = $(CSS_CLASS.wall)
-const $turn = $(CSS_CLASS.turn)
-const $board = $(CSS_CLASS.board)
-const $slots = $$(CSS_CLASS.slot)
-const $players = $$(CSS_CLASS.players)
-const $buttonReset = $(CSS_CLASS.reset)
+const $wall = $(CONST.wall)
+const $turn = $(CONST.turn)
+const $board = $(CONST.board)
+const $slots = $$(CONST.slot)
+const $players = $$(CONST.players)
+const $buttonReset = $(CONST.reset)
 
 const icons = ['icon-x', 'icon-o']
 const combinations = [
@@ -40,18 +40,16 @@ let gameMode = 0
 let turn = 0
 
 // Evento en el tablero para iniciar el juego.
-$board.addEventListener('click', (e) => {
-  const item = e.target.closest(CSS_CLASS.slot)
-
-  if (item) {
-    playTurn(item.dataset.i)
+$board.addEventListener('click', ({ target }) => {
+  const $slot = target.closest(CONST.slot)
+  if ($slot) {
+    playTurn($slot.dataset.i)
     robot()
   }
 })
 
 /*
   Evento para limpiar el tablero al terminar una ronda.
-
   La variable "animEnd" se usar para detectar la finalización de una animación
   ya que se ejecutan varias por cada slot animado.
 */
@@ -86,12 +84,12 @@ $buttonReset.addEventListener('click', () => {
 
 // Función que controla la acción del jugador en turno.
 function playTurn(index) {
-  if (board[index]) return // Verifica si esta ocupado el slot cliqueado.
+  if (board[index]) return // Verifica si al slot dado click esta ocupado.
 
   $slots[index].classList.add(icons[turn])
   board[index] = icons[turn]
 
-  // Se verifica si el jugador ha completado una combinación
+  // Se verifica si el jugador ha completado una combinación.
   const combination = checkCombination()
   if (combination) {
     wall()
@@ -126,8 +124,8 @@ function checkCombination() {
 // Agrega una capa transparente al tablero para evitar click accidentales.
 function wall(active = true) {
   active
-    ? $wall.classList.add(CSS_CLASS.showWall)
-    : $wall.classList.remove(CSS_CLASS.showWall)
+    ? $wall.classList.add(CONST.showWall)
+    : $wall.classList.remove(CONST.showWall)
 }
 
 // Ejecuta la animación win a las casillas.
@@ -148,8 +146,8 @@ function animationFullBoard() {
 function scoreController(reset) {
   reset ? (scores = [0, 0]) : scores[turn]++
 
-  $players[0].querySelector(CSS_CLASS.score).textContent = scores[0]
-  $players[1].querySelector(CSS_CLASS.score).textContent = scores[1]
+  $players[0].querySelector(CONST.score).textContent = scores[0]
+  $players[1].querySelector(CONST.score).textContent = scores[1]
 }
 
 // Controla el cambio de turno de los jugadores.
@@ -162,7 +160,7 @@ function changeTurn() {
 // Se encarga de volver al tablero a su estado inicial.
 function clearBoard() {
   for (const elem of $slots) {
-    elem.setAttribute('class', CSS_CLASS.resetSlot)
+    elem.setAttribute('class', CONST.resetSlot)
   }
   wall(false)
   board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -177,27 +175,6 @@ function reset() {
   roundFinished = false
   $turn.classList.replace(icons[1], icons[0])
 }
-
-// popup message - info de cambio de modo
-// window.onload = setTimeout(() => {
-//   const popup = $('.message-box')
-//   popup.classList.add('message-box--show')
-
-//   const removePopup = () => {
-//     popup.removeEventListener('click', popupAnimation)
-//     popup.removeEventListener('animationend', removePopup)
-//     popup.remove()
-//   }
-
-//   const popupAnimation = ({ target }) => {
-//     if (target.matches('.message__icon')) {
-//       popup.classList.add('message-box--remove')
-//       popup.addEventListener('animationend', removePopup)
-//     }
-//   }
-
-//   popup.addEventListener('click', popupAnimation)
-// }, 1000)
 
 // Algoritmo de simulación de inteligencia para el jugador CPU.
 function robot() {
