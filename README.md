@@ -1,7 +1,11 @@
 # Tic Tac Toe
-Juego de Tic-Tac-Toe: Una Implementación Responsiva Usando HTML, CSS y JavaScript
 
-* [Ir al juego](https://lbrione.github.io/tic-tac-toe/)
+Juego de Tic-Tac-Toe: Una implementación responsiva usando HTML, CSS y JavaScript.
 
+## Enlace al Juego
+
+<a href="https://lbrionez.github.io/tic-tac-toe/" target="_blank">Ir al juego</a>
+
+## Captura de Pantalla
 
 ![Screenshot of the page.](./src/img/picture.png "Screenshot of the page.")
