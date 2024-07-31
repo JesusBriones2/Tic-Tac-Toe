@@ -8,4 +8,4 @@ Juego de Tic-Tac-Toe: Una implementación responsiva usando HTML, CSS y JavaScri
 
 ## Captura de Pantalla
 
-![Screenshot of the page.](./src/img/picture.png "Screenshot of the page.")
+![Screenshot of the page.](./src/img/readme.png "Screenshot of the page.")
